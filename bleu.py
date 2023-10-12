@@ -1,0 +1,17 @@
+# 引入必要的库
+from nltk.translate.bleu_score import sentence_bleu
+import nltk
+
+# 原始文本和生成的摘要
+reference = [['If', 'you', "'re", 'interested', 'in', 'how', 'AI', 'and', 'machine', 'learning', 'can', 'be', 'part', 'of', 'the', 'solution', 'for', 'real', 'world', 'challenges', ',', 'things', 'like', 'public', 'health', 'or', 'climate', 'change', 'or', 'disaster', 'management', ',', 'this', 'specialization', 'will', 'give', 'you', 'a', 'sense', '.'], ['When', 'it', 'comes', 'to', 'accessing', 'complex', 'real', 'world', 'problems', ',', 'the', 'potential', 'solutions', 'are', 'often', 'very', 'complex', 'as', 'well', '.'], ['It', 'might', 'involve', 'many', 'different', 'stakeholders', ',', 'it', 'may', 'involve', 'logistical', 'constraints', ',', 'sometimes', 'data', 'privacy', 'issues', '.'], ['So', 'we', "'ve", 'designed', 'these', 'courses', 'to', 'give', 'you', 'hands-on', 'experience', 'working', 'with', 'AI', 'applications', 'so', 'you', 'can', 'see', 'how', 'the', 'AI', 'technology', 'piece', 'fits', 'into', 'the', 'broader', 'context', 'of', 'addressing', 'some', 'big', 'challenges', 'in', 'the', 'world', '.'], ['Speaker', '1', ':', 'I', "'m", 'really', 'excited', 'to', 'be', 'here', '.', 'I', 'look', 'forward', 'to', 'sharing', 'a', 'lot', 'of', 'the', 'experience', 'that', 'I', "'ve", 'had', 'both', 'in', 'industry', 'and', 'as', 'a', 'disaster', 'responder', 'to', 'help', 'you', 'think', 'about', 'the', 'ways', 'that', 'AI', 'can', 'or', 'maybe', 'in', 'some', 'cases', 'should', 'not', 'be', 'used', 'to', 'help', 'with', 'areas', 'like', 'public', 'health', ',', 'climate', 'change', 'and', 'disaster', 'response', '.'], ['Many', 'of', 'us', 'have', 'felt', 'this', 'desire', 'to', 'take', 'AI', 'and', 'go', 'out', 'and', 'let', "'s", 'make', 'the', 'world', 'a', 'better', 'place', ',', 'let', "'s", 'use', 'AI', 'for', 'good', '.'], ['I', "'m", 'excited', 'to', 'have', 'you', 'in', 'this', 'specialization', 'and', 'as', 'you', 'go', 'through', 'it', ',', 'I', 'hope', 'that', 'you', 'learn', 'how', 'to', 'build', 'AI', 'projects', ',', 'that', 'process', 'that', 'Robert', 'and', 'I', 'were', 'talking', 'about', ',', 'how', 'to', 'evaluate', 'and', 'make', 'an', 'AI', 'project', 'successful', '.'], ['And', 'hopefully', ',', 'perhaps', 'after', 'taking', 'this', 'specialization', ',', 'you', "'ll", 'be', 'inspired', 'to', 'go', 'use', 'these', 'algorithms', 'to', 'actually', 'go', 'tackle', 'and', 'make', 'a', 'dent', ',', 'make', 'a', 'difference', 'in', 'some', 'of', 'these', 'most', 'important', 'societal', 'problems', 'facing', 'us', 'today', '.']]
+generated = ['This', 'specialization', 'provides', 'hands-on', 'experience', 'with', 'AI', 'applications', 'to', 'tackle', 'real-world', 'challenges', 'such', 'as', 'public', 'health', ',', 'climate', 'change', ',', 'and', 'disaster', 'management', '.', 'Learners', 'will', 'gain', 'insight', 'into', 'the', 'complexities', 'of', 'these', 'problems', 'and', 'the', 'potential', 'for', 'using', 'AI', 'to', 'address', 'them', '.', 'The', 'course', 'aims', 'to', 'help', 'learners', 'build', 'and', 'evaluate', 'effective', 'AI', 'projects', 'that', 'make', 'a', 'positive', 'impact', 'on', 'important', 'societal', 'issues', '.']
+
+# 将文本分成单词
+reference = [nltk.word_tokenize(' '.join(ref)) for ref in reference]
+generated = nltk.word_tokenize(' '.join(generated))
+
+print(generated)
+# 计算 Bleu 值
+bleu_score = sentence_bleu(reference, generated, weights=(0.25, 0.25, 0.25, 0.25))
+
+print(bleu_score)
