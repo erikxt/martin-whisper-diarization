@@ -1,0 +1,7 @@
+﻿
+
+Speaker 0: If you're interested in how AI and machine learning can be part of the solution for real world challenges, things like public health or climate change or disaster management, this specialization will give you a sense. When it comes to accessing complex real world problems, the potential solutions are often very complex as well. It might involve many different stakeholders, it may involve logistical constraints, sometimes data privacy issues. So we've designed these courses to give you hands-on experience working with AI applications so you can see how the AI technology piece fits into the broader context of addressing some big challenges in the world. 
+
+Speaker 1: I'm really excited to be here. I look forward to sharing a lot of the experience that I've had both in industry and as a disaster responder to help you think about the ways that AI can or maybe in some cases should not be used to help with areas like public health, climate change and disaster response. 
+
+Speaker 0: Many of us have felt this desire to take AI and go out and let's make the world a better place, let's use AI for good. I'm excited to have you in this specialization and as you go through it, I hope that you learn how to build AI projects, that process that Robert and I were talking about, how to evaluate and make an AI project successful. And hopefully, perhaps after taking this specialization, you'll be inspired to go use these algorithms to actually go tackle and make a dent, make a difference in some of these most important societal problems facing us today. 
