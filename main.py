@@ -341,4 +341,4 @@ def potential_question_extraction(file_name, transcript):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app="main:app", host="172.21.225.137", port=8000, reload=True)
+    uvicorn.run(app="main:app", port=8000, reload=True)
