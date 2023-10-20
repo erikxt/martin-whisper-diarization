@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Who is the guest on the city hour radio show?",
+    "type": "text"
+  },
+  {
+    "question": "Why has the location of the city fair changed this year?",
+    "type": "text"
+  },
+  {
+    "question": "What is the new location for the city fair?",
+    "type": "text"
+  },
+  {
+    "question": "What is the special opening event for the fair?",
+    "type": "text"
+  },
+  {
+    "question": "Who will be participating in the opening event?",
+    "type": "text"
+  },
+  {
+    "question": "What is the cost of admission to the fair?",
+    "type": "text"
+  },
+  {
+    "question": "What are some of the events planned for the main days of the fair?",
+    "type": "text"
+  },
+  {
+    "question": "What special event is planned for Sunday?",
+    "type": "text"
+  },
+  {
+    "question": "What will be available at the food court?",
+    "type": "text"
+  },
+  {
+    "question": "What can people buy at the fair?",
+    "type": "text"
+  }
+]

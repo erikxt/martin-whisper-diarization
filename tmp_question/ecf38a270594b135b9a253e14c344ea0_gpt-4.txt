@@ -1,0 +1,38 @@
+[
+  {
+    "question": "What is machine learning and how is it used in everyday applications?",
+    "type": "open-ended"
+  },
+  {
+    "question": "How does machine learning contribute to the functionality of web search engines like Google or Bing?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What role does machine learning play in email spam filters?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What is the speaker's current research project about?",
+    "type": "open-ended"
+  },
+  {
+    "question": "How does the speaker plan to teach robots to tidy up the house?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What is the speaker's perspective on artificial intelligence?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What are neural networks and how do they relate to machine learning?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What can one expect to learn from the speaker's class?",
+    "type": "open-ended"
+  },
+  {
+    "question": "How can one sign up for the speaker's class?",
+    "type": "open-ended"
+  }
+]

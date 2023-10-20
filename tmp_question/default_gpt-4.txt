@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What are some of the real-world challenges that AI and machine learning can be part of the solution for, according to speaker 0?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What are some of the complexities involved in accessing real-world problems, as mentioned by speaker 0?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What is the purpose of the courses designed by speaker 0?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What is speaker 1's experience in relation to AI?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What are the areas that speaker 1 suggests AI can or should not be used to help with?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What does speaker 0 hope the learners will achieve after going through the specialization?",
+    "type": "open-ended"
+  }
+]

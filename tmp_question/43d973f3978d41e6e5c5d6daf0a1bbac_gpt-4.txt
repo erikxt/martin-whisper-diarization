@@ -1,0 +1,30 @@
+[
+  {
+    "question": "Who is the instructor for the course on fine-tuning large language models?",
+    "type": "text"
+  },
+  {
+    "question": "What other courses has Sharon Zhou previously taught?",
+    "type": "text"
+  },
+  {
+    "question": "What are the three ways that application developers are using large language models?",
+    "type": "text"
+  },
+  {
+    "question": "What is the advantage of fine-tuning an open-source language model?",
+    "type": "text"
+  },
+  {
+    "question": "What is the limitation of general-purpose language models?",
+    "type": "text"
+  },
+  {
+    "question": "What will the students learn in this course?",
+    "type": "text"
+  },
+  {
+    "question": "What is the significance of fine-tuning in the context of using large language models?",
+    "type": "text"
+  }
+]

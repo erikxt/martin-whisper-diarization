@@ -5,7 +5,7 @@ import os
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import uvicorn
-from fastapi import FastAPI, HTTPException, Request, Response, UploadFile
+from fastapi import FastAPI, HTTPException, Request, UploadFile, Form
 import uuid
 import ffmpy
 import moviepy.editor as mp
@@ -21,6 +21,7 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",
     "http://172.21.225.137:3000",
+    "http://127.0.0.1:3000"
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -85,6 +86,7 @@ async def get_srt(file_name: str):
     
 @app.get("/nlg/{file_name}", description="summary, metrics action items, potential questions")
 async def get_nlp_data(file_name, platform="gpt-4"):
+    print("platform:" + platform)
     transcript = get_transcript(file_name)
     transcript = remove_speaker_tag(transcript)
     summary = get_summary_content(file_name, transcript=transcript, platform=platform)
@@ -93,10 +95,13 @@ async def get_nlp_data(file_name, platform="gpt-4"):
     references =  get_references(transcript)
     candidate = get_candidate(summary)
     bleu_score = get_bleu_score(references, candidate)
-    
     rouge_score = get_rouge_score(transcript, summary)
     meteor_score = get_meteor_score(references, candidate)
-    return {"summary": summary, "bleu": bleu_score, "rouge": rouge_score, "meteor": meteor_score}
+    
+    action_items = get_action_items(file_name, transcript, platform=platform)
+    potential_questions = get_potential_questions(file_name, transcript, platform=platform)
+    return {"summary": summary, "bleu": bleu_score, "rouge": rouge_score, "meteor": meteor_score,
+            "action_items": action_items, "questions": potential_questions}
 
 
 @app.get("/summary/{file_name}", description="Get the srt file of the video")
@@ -117,7 +122,10 @@ async def create_upload_file(file: UploadFile):
     # generate a random name for the uploaded video
     file_name = str(uuid.uuid4())
     print(file_name)
-
+    # check if the file is a video file
+    if file.content_type != "video/mp4":
+        raise HTTPException(status_code=400, detail="File type error")
+    # get the path of the uploaded video
     video_path = os.path.join("tmp_video", file_name + ".mp4")
     print(video_path)
     # save the video file on the server
@@ -201,7 +209,7 @@ async def extract_audio_and_generate_srt(video_path, file_name):
     # long time cost
     print("start transcribing")
     # transcribe_to_srt(audio_path)
-    subprocess.Popen(["python3", "diarize.py", "-a", audio_path, "--no-stem"])
+    subprocess.Popen(["python3", "diarize.py", "-a", audio_path])
 
 
 @app.get("/nlg/summary/{file_name}", description="Get the summary of the transcript")
@@ -258,14 +266,18 @@ def abstract_summary_extraction(file_name, transcript, platform):
 
 # like get_summary function, but return the action items
 
-
-def get_action_items(file_name, transcript, platform="gpt-4"):
+@app.post("/nlg/action_items/{file_name}", description="Get the action items of the transcript")
+async def get_action_items_http(file_name : str, transcript : str = Form(), platform="gpt-4", refresh: bool = Form(False)):
+    get_action_items(file_name, transcript, platform=platform, refresh=refresh)
+    
+    
+def get_action_items(file_name, transcript, platform="gpt-4", refresh: bool = False):   
     action_item_path = os.path.join('tmp_action_item', 
                                     file_name + '_' + platform + '.txt')
     # check if the action item file exists, if not, generate the action item file
-    if not os.path.exists(action_item_path):
+    if not os.path.exists(action_item_path) or refresh:
         # generate the action item file
-        action_items = action_item_extraction(file_name, transcript)
+        action_items = action_item_extraction(file_name, transcript, action_item_path)
         # write the action items into the file
     else:
         # read the action items from the file
@@ -273,7 +285,7 @@ def get_action_items(file_name, transcript, platform="gpt-4"):
             action_items = f.read()
     # return the action items in json format
     # trans action_items to json format
-    return {"action_items": json.loads(action_items)}
+    return json.loads(action_items)
 
 
 def get_transcript(file_name):
@@ -283,7 +295,7 @@ def get_transcript(file_name):
         return transcript
 
 
-def action_item_extraction(file_name, transcript):
+def action_item_extraction(file_name, transcript, action_item_path, platform="gpt-4"):
     response = openai.ChatCompletion.create(
         model="gpt-4",
         temperature=0,
@@ -305,7 +317,6 @@ def action_item_extraction(file_name, transcript):
         ]
     )
     action_items = response['choices'][0]['message']['content']
-    action_item_path = os.path.join('tmp_action_item', file_name + '.txt')
     with open(action_item_path, 'w') as f:
         f.write(action_items)
     return action_items
@@ -313,7 +324,23 @@ def action_item_extraction(file_name, transcript):
 # like abstract_summary_extraction function, ask gpt-4 to extract some questions about the transcript
 
 
-def potential_question_extraction(file_name, transcript):
+def get_potential_questions(file_name, transcript, platform="gpt-4"):
+    question_item_path = os.path.join('tmp_question', 
+                                    file_name + '_' + platform + '.txt')
+    # check if the action item file exists, if not, generate the action item file
+    if not os.path.exists(question_item_path):
+        # generate the action item file
+        questions = potential_question_extraction(file_name, transcript, question_item_path, platform=platform)
+        # write the action items into the file
+    else:
+        # read the action items from the file
+        with open(question_item_path, 'r', encoding="utf-8-sig") as f:
+            questions = f.read()
+    # return the action items in json format
+    # trans action_items to json format
+    return json.loads(questions)
+
+def potential_question_extraction(file_name, transcript, question_path, platform="gpt-4"):
     response = openai.ChatCompletion.create(
         model="gpt-4",
         temperature=0,
@@ -334,7 +361,6 @@ def potential_question_extraction(file_name, transcript):
         ]
     )
     questions = response['choices'][0]['message']['content']
-    question_path = os.path.join('tmp_questions', file_name + '.txt')
     with open(question_path, 'w') as f:
         f.write(questions)
     return questions
