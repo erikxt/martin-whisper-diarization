@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is the new course being introduced?",
+    "type": "text"
+  },
+  {
+    "question": "Who are the partners in creating this course?",
+    "type": "text"
+  },
+  {
+    "question": "What will the students learn in this course?",
+    "type": "text"
+  },
+  {
+    "question": "What are the two ways llms are used in the search process?",
+    "type": "text"
+  },
+  {
+    "question": "Who are the instructors of this course?",
+    "type": "text"
+  },
+  {
+    "question": "What are the two main ideas discussed for language model powered search?",
+    "type": "text"
+  },
+  {
+    "question": "How does the use of llms improve search systems?",
+    "type": "text"
+  },
+  {
+    "question": "What is a retrieval augmented llm?",
+    "type": "text"
+  },
+  {
+    "question": "What will the students be able to do after finishing this course?",
+    "type": "text"
+  },
+  {
+    "question": "What are some key technical foundations of llms?",
+    "type": "text"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is an au pair?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What are the responsibilities of an au pair in the UK?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What are the requirements for someone to become an au pair in the UK?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What is the maximum duration a girl can stay in the UK as an au pair?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What are the conditions for an au pair to extend her stay in the UK?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What should an au pair do if she wishes to change host families during her time in the UK?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What is the process for an au pair who is not a national of a commonwealth or European community country and is admitted for longer than 6 months?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What is the range of pocket money an au pair should receive per week?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What information should an au pair have before she arrives in the UK?",
+    "type": "open-ended"
+  },
+  {
+    "question": "What are the age and nationality requirements for an au pair in the UK?",
+    "type": "open-ended"
+  }
+]
